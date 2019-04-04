@@ -35,20 +35,17 @@ print(titanic_df.columns)
 titanic_df.describe(include='all')
  
 #### In[3] #### 
+Survived = titanic_df.loc[:,'Survived']
+Age = titanic_df.loc[:,'Age']
+
+#histogram for Age
+plt.hist(Age)
+plt.title('Histogram of Age')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+
 #boxplots
-myplot=titanic_df.plot.box(grid=1, notch=1)
-myplot.set_title("Notched Boxplots, Median Test=Reject with No Notch Overlaps") 
-
-# single scatter plot example
-fig,ax=plt.subplots()
-ax = sns.regplot(x="Survived", y="Sex", data=titanic_df)
-
-# joint plot
-sns.jointplot(x="Survived", y="Sex", data=titanic_df, kind="kde");
-
-#### In[4] #### 
-#Scatterplot matrix
-sns.pairplot(titanic_df)
+sns.boxplot(x=Survived, y=Age, palette="Set1")
  
 #### In[5] ####  
 # examine intercorrelations among variables
