@@ -1,0 +1,60 @@
+#### In[1] ####
+import pandas as pd  # data  
+import numpy as np  #mathematics
+import matplotlib.pyplot as plt  #plots
+import seaborn as sns  #graphics package
+from sklearn import datasets  #you might as well get used to sklearn
+import os #manage files
+os.chdir('C:\\Users\\A4 Dell\\Desktop\\Northwestern University\\Practical Machine Learning\\week1')
+
+#### In[2] ####
+# read the data using pandas read_csv function (identical to R, read.csv)
+survey = pd.read_csv('train.csv')
+ 
+# use the PassengerId as a unique label for the rows and drop from the data.frame
+survey.set_index('PassengerId', drop = True, inplace = True)
+ 
+# examine the structure of the DataFrame object
+print('\nQuick Exploration of Data ---------------')
+ 
+#len in Python is equivalent to length in R.
+print('\nNumber of Respondents =', len(survey)) 
+ 
+# show the column/variable names of the DataFrame
+print(survey.columns)
+ 
+# abbreviated printing of the first five rows of the data frame
+print(pd.DataFrame.head(survey)) 
+
+# define subset DataFrame for analysis
+titanic_df = survey_df.loc[:, ('Survived', 'Sex', 'Age', 'SibSp')]
+print(pd.DataFrame.head(titanic_df)) 
+print(titanic_df.columns)
+ 
+#describe the data set
+titanic_df.describe(include='all')
+ 
+#### In[3] #### 
+#boxplots
+myplot=titanic_df.plot.box(grid=1, notch=1)
+myplot.set_title("Notched Boxplots, Median Test=Reject with No Notch Overlaps") 
+
+# single scatter plot example
+fig,ax=plt.subplots()
+ax = sns.regplot(x="Survived", y="Sex", data=titanic_df)
+
+# joint plot
+sns.jointplot(x="Survived", y="Sex", data=titanic_df, kind="kde");
+
+#### In[4] #### 
+#Scatterplot matrix
+sns.pairplot(titanic_df)
+ 
+#### In[5] ####  
+# examine intercorrelations among variables
+# with correlation matrix/heat map
+mycorr=titanic_df.corr()   # get the correlation matrix
+print(mycorr)              #print to verify
+sns.heatmap(mycorr, cmap="coolwarm", square=1, annot = True, annot_kws={'size': 9}, fmt = '.3f')
+plt.title('Correlation Heat Map')  
+ 
