@@ -27,7 +27,7 @@ print(survey.columns)
 print(pd.DataFrame.head(survey)) 
 
 # define subset DataFrame for analysis
-titanic_df = survey_df.loc[:, ('Survived', 'Sex', 'Age', 'SibSp')]
+titanic_df = survey.loc[:, ('Survived', 'Sex', 'Age', 'SibSp')]
 print(pd.DataFrame.head(titanic_df)) 
 print(titanic_df.columns)
  
